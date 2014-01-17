@@ -21,7 +21,6 @@ class KiiClient:
             self.headers['authorization'] = 'Bearer %s' % context.access_token
         
     def send(self, data = None):
-        print 'chris client'
         req = urllib2.Request(
             url = self.url,
             headers = self.headers)
