@@ -34,11 +34,9 @@ class KiiClient:
 
         try:
             resp = urllib2.urlopen(req)
-            body = resp.read()
-            respBody = None
-            if(len(body) > 0):
-                respBody = json.loads(body)
-            return (resp.code, respBody)
+            return (resp.code, json.loads(resp.read()))
+        except ValueError, e:
+            return (resp.code, None)
         except urllib2.HTTPError, e:
             body = json.loads(e.read())
             return (e.code, body)
